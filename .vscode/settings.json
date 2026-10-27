@@ -1,0 +1,8 @@
+{
+    "chat.tools.terminal.autoApprove": {
+        "/^Set-Location 'C:\\\\Users\\\\Aprendiz\\\\Documents\\\\git\\\\nube-de-Sporty\\\\frontend_mobile'; npm ci; node node_modules\\\\typescript\\\\bin\\\\tsc --noEmit$/": {
+            "approve": true,
+            "matchCommandLine": true
+        }
+    }
+}
