@@ -31,12 +31,13 @@ app.use(express.urlencoded({ extended: true }));
 // ============================================
 app.use(cors({
     origin: [
+        // --- Entornos Locales (tus IPs actuales) ---
         'http://10.1.202.105',
-        'http://10.1.202.105:3000',        // ← Backend
-        'http://10.1.202.105:5173',        // ← Web
-        'http://10.1.202.105:8081',        // ← Expo Metro
-        'http://10.1.202.105:19000',       // ← Expo Go
-        'http://10.1.202.105:19001',       // ← Expo Go
+        'http://10.1.202.105:3000',
+        'http://10.1.202.105:5173',
+        'http://10.1.202.105:8081',
+        'http://10.1.202.105:19000',
+        'http://10.1.202.105:19001',
         'http://localhost',
         'http://localhost:5173',
         'http://localhost:8081',
@@ -47,6 +48,10 @@ app.use(cors({
         'http://127.0.0.1:8081',
         'http://127.0.0.1:19000',
         'http://127.0.0.1:19001',
+
+        // --- Entornos de Producción (Nube) ---
+        'https://nube-sporty-web.pages.dev', // Tu frontend en Cloudflare
+        // 'https://tu-backend.onrender.com', // Agrega la URL de Render si la necesitas para Swagger
     ],
     credentials: true,
     methods: ['GET', 'POST', 'PUT', 'DELETE', 'PATCH', 'OPTIONS'],
