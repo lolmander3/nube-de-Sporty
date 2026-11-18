@@ -18,7 +18,7 @@ const API_CONFIG = {
         USERS: '/users',
         USER_BY_ID: '/users/:id',
         USER_DELETE: '/users/delete/:id',
-        USER_UPDATE: '/users',
+        USER_UPDATE: '/users/:id',
         USER_TOGGLE_STATUS: '/users/toggle-status/:id',
 
         // ============================================
