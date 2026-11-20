@@ -120,6 +120,6 @@ app.use((req, res) => {
     });
 });
 console.log(`========================================================================`);
-console.log('Swagger disponible en: http://10.1.202.105:3000/api-docs');
+console.log('Swagger disponible en: http://localhost:3000/api-docs');
 
 module.exports = app;
