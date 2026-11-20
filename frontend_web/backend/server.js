@@ -9,6 +9,15 @@ const swaggerUi = require('swagger-ui-express');
 const swaggerSpec = require('./config/swagger');
 const app = express();
 
+const corsOptions = {
+    origin: 'https://49477e4d.nube-sporty-web.pages.dev',
+    methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
+    allowedHeaders: ['Content-Type', 'Authorization'],
+    credentials: true
+};
+
+app.use(cors(corsOptions));
+
 // ============================================
 // IMPORTACIÓN DE RUTAS
 // ============================================
@@ -26,28 +35,6 @@ app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
-// ============================================
-// CONFIGURACIÓN CORS UNIFICADA
-// ============================================
-app.use(cors({
-    origin: [
-        // Tus IPs locales (para que sigas trabajando en tu PC)
-        'http://10.1.202.105:5173',
-        'http://10.1.202.105:8081',
-        'http://localhost',
-        'http://localhost:5173',
-        'http://localhost:8081',
-        'http://127.0.0.1',
-        'http://127.0.0.1:5173',
-        'http://127.0.0.1:8081',
-        
-        // Dominio raiz y previews de Cloudflare Pages
-        /^https:\/\/([a-z0-9-]+\.)?nube-sporty-web\.pages\.dev$/
-    ],
-    credentials: true,
-    methods: ['GET', 'POST', 'PUT', 'DELETE', 'PATCH', 'OPTIONS'],
-    allowedHeaders: ['Content-Type', 'Authorization', 'X-Requested-With']
-}));
 // ============================================
 // DOCUMENTACIÓN SWAGGER
 // ============================================
