@@ -9,8 +9,19 @@ const swaggerUi = require('swagger-ui-express');
 const swaggerSpec = require('./config/swagger');
 const app = express();
 
+const configuredOrigins = (process.env.CORS_ORIGINS || '')
+    .split(',')
+    .map((origin) => origin.trim())
+    .filter(Boolean);
+
 const corsOptions = {
-    origin: 'https://49477e4d.nube-sporty-web.pages.dev',
+    origin: (origin, callback) => {
+        const isCloudflarePagesOrigin = origin === 'https://nube-sporty-web.pages.dev'
+            || (origin && origin.endsWith('.nube-sporty-web.pages.dev'));
+        const isConfiguredOrigin = origin && configuredOrigins.includes(origin);
+
+        callback(null, !origin || isCloudflarePagesOrigin || isConfiguredOrigin);
+    },
     methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
     allowedHeaders: ['Content-Type', 'Authorization'],
     credentials: true
