@@ -34,13 +34,15 @@ app.use(cors({
         // Tus IPs locales (para que sigas trabajando en tu PC)
         'http://10.1.202.105:5173',
         'http://10.1.202.105:8081',
+        'http://localhost',
         'http://localhost:5173',
         'http://localhost:8081',
+        'http://127.0.0.1',
         'http://127.0.0.1:5173',
         'http://127.0.0.1:8081',
         
-        // 👇 ESTO ACEPTA CUALQUIER SUBDOMINIO DE CLOUDFLARE PAGES 👇
-        /^https:\/\/.*\.nube-sporty-web\.pages\.dev$/
+        // Dominio raiz y previews de Cloudflare Pages
+        /^https:\/\/([a-z0-9-]+\.)?nube-sporty-web\.pages\.dev$/
     ],
     credentials: true,
     methods: ['GET', 'POST', 'PUT', 'DELETE', 'PATCH', 'OPTIONS'],
