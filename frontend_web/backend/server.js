@@ -9,26 +9,6 @@ const swaggerUi = require('swagger-ui-express');
 const swaggerSpec = require('./config/swagger');
 const app = express();
 
-const configuredOrigins = (process.env.CORS_ORIGINS || '')
-    .split(',')
-    .map((origin) => origin.trim())
-    .filter(Boolean);
-
-const corsOptions = {
-    origin: (origin, callback) => {
-        const isCloudflarePagesOrigin = origin === 'https://nube-sporty-web.pages.dev'
-            || (origin && origin.endsWith('.nube-sporty-web.pages.dev'));
-        const isConfiguredOrigin = origin && configuredOrigins.includes(origin);
-
-        callback(null, !origin || isCloudflarePagesOrigin || isConfiguredOrigin);
-    },
-    methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
-    allowedHeaders: ['Content-Type', 'Authorization'],
-    credentials: true
-};
-
-app.use(cors(corsOptions));
-
 // ============================================
 // IMPORTACIÓN DE RUTAS
 // ============================================
@@ -45,6 +25,33 @@ const studentRoutes = require('./routes/studentRoutes');
 app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
+
+// ============================================
+// CONFIGURACIÓN CORS UNIFICADA
+// ============================================
+app.use(cors({
+    origin: [
+        'http://10.1.202.105',
+        'http://10.1.202.105:3000',        // ← Backend
+        'http://10.1.202.105:5173',        // ← Web
+        'http://10.1.202.105:8081',        // ← Expo Metro
+        'http://10.1.202.105:19000',       // ← Expo Go
+        'http://10.1.202.105:19001',       // ← Expo Go
+        'http://localhost',
+        'http://localhost:5173',
+        'http://localhost:8081',
+        'http://localhost:19000',
+        'http://localhost:19001',
+        'http://127.0.0.1',
+        'http://127.0.0.1:5173',
+        'http://127.0.0.1:8081',
+        'http://127.0.0.1:19000',
+        'http://127.0.0.1:19001',
+    ],
+    credentials: true,
+    methods: ['GET', 'POST', 'PUT', 'DELETE', 'PATCH', 'OPTIONS'],
+    allowedHeaders: ['Content-Type', 'Authorization', 'X-Requested-With']
+}));
 
 // ============================================
 // DOCUMENTACIÓN SWAGGER
@@ -131,6 +138,6 @@ app.use((req, res) => {
     });
 });
 console.log(`========================================================================`);
-console.log('Swagger disponible en: http://localhost:3000/api-docs');
+console.log('Swagger disponible en: http://10.1.202.105:3000/api-docs');
 
 module.exports = app;
