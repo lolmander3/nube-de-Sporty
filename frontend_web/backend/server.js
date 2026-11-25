@@ -31,6 +31,7 @@ app.use(express.urlencoded({ extended: true }));
 // ============================================
 app.use(cors({
     origin: [
+        'https://nube-sporty-web.pages.dev',
         'http://10.1.202.105',
         'http://10.1.202.105:3000',        // ← Backend
         'http://10.1.202.105:5173',        // ← Web
