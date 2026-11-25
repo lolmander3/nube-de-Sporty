@@ -362,58 +362,56 @@ const UsersView = () => {
             const studentTypeLabel = user.role === 'user' && user.isStudentUser ? 'Estudiante' : userTypeLabel(user.resolvedUserType || 'none')
             return (
               <article key={user.id} className="usr-card">
-                <div className="usr-card-top">
-                  <div
-                    className="usr-avatar"
-                    style={{ background: `linear-gradient(135deg, ${color}, #c41e3a)` }}
-                  >
-                    {initials(user)}
-                  </div>
-                  <div className="usr-card-head">
-                    <h3 className="usr-card-name">
-                      {user.name || user.lastname
-                        ? `${user.name || ''} ${user.lastname || ''}`.trim()
-                        : user.email?.split('@')[0]}
-                    </h3>
-                    <span className="usr-role-badge" style={{ color, background: `${color}14` }}>
-                      {roleLabel(user.role)}
-                    </span>
-                    {Number(user.id) === Number(currentUser?.id) && (
-                      <span className="usr-role-badge">Tú</span>
-                    )}
-                  </div>
-                  <button
-                    type="button"
-                    className={`usr-status-pill ${isActive ? 'is-on' : 'is-off'}`}
-                    onClick={() => handleToggleStatus(user)}
-                    disabled={!canToggleStatus(user)}
-                  >
-                    {isActive ? 'Activo' : 'Inactivo'}
-                  </button>
-                </div>
-
-                <div className="usr-card-rows">
-                  <div className="usr-row">
-                    <span className="usr-row-label">Email</span>
-                    <span className="usr-row-value">{user.email || '—'}</span>
-                  </div>
-                  {user.document && (
-                    <div className="usr-row">
-                      <span className="usr-row-label">Documento</span>
-                      <span className="usr-row-value">{user.document}</span>
+                <div className="usr-card-accent" />
+                <div className="usr-card-body">
+                  <div className="usr-card-top">
+                    <div
+                      className="usr-avatar"
+                      style={{ background: `linear-gradient(135deg, ${color}, #c41e3a)` }}
+                    >
+                      {initials(user)}
                     </div>
-                  )}
-                  <div className="usr-row">
-                    <span className="usr-row-label">Tipo</span>
-                    <span className="usr-row-value">{studentTypeLabel}</span>
+                    <div className="usr-card-head">
+                      <h3 className="usr-card-name">
+                        {user.name || user.lastname
+                          ? `${user.name || ''} ${user.lastname || ''}`.trim()
+                          : user.email?.split('@')[0]}
+                      </h3>
+                      <div className="usr-badges">
+                        <span className="usr-role-badge" style={{ color, background: `${color}14` }}>
+                          {roleLabel(user.role)}
+                        </span>
+                        {Number(user.id) === Number(currentUser?.id) && (
+                          <span className="usr-you-badge">Tú</span>
+                        )}
+                      </div>
+                    </div>
+                    <button
+                      type="button"
+                      className={`usr-status-pill ${isActive ? 'is-on' : 'is-off'}`}
+                      onClick={() => handleToggleStatus(user)}
+                      disabled={!canToggleStatus(user)}
+                      title={isActive ? 'Desactivar' : 'Activar'}
+                    >
+                      {isActive ? 'Activo' : 'Inactivo'}
+                    </button>
                   </div>
-                  <div className="usr-row">
-                    <span className="usr-row-label">Estado</span>
-                    <span className="usr-row-value">{isActive ? 'Activo' : 'Inactivo'}</span>
-                  </div>
-                  <div className="usr-row">
-                    <span className="usr-row-label">ID</span>
-                    <span className="usr-row-value">#{user.id}</span>
+
+                  <div className="usr-card-rows">
+                    <div className="usr-row">
+                      <span className="usr-row-label">Email</span>
+                      <span className="usr-row-value">{user.email || '—'}</span>
+                    </div>
+                    {user.document ? (
+                      <div className="usr-row">
+                        <span className="usr-row-label">Documento</span>
+                        <span className="usr-row-value">{user.document}</span>
+                      </div>
+                    ) : null}
+                    <div className="usr-row">
+                      <span className="usr-row-label">Tipo</span>
+                      <span className="usr-row-value">{studentTypeLabel}</span>
+                    </div>
                   </div>
                 </div>
 
@@ -431,17 +429,18 @@ const UsersView = () => {
                   </button>
                   <button
                     type="button"
-                    className="usr-btn"
+                    className="usr-btn usr-btn-toggle"
                     onClick={() => handleToggleStatus(user)}
                     disabled={!canToggleStatus(user)}
                   >
-                    {user.is_active === 1 || user.is_active === true ? 'Desactivar' : 'Activar'}
+                    {isActive ? 'Desactivar' : 'Activar'}
                   </button>
                   <button
                     type="button"
                     className="usr-btn usr-btn-del"
                     onClick={() => handleDelete(user)}
                     disabled={!canDelete(user)}
+                    title="Eliminar"
                   >
                     Eliminar
                   </button>
