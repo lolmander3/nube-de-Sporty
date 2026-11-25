@@ -47,8 +47,8 @@
 /* ===== HERO ===== */
 .ph-hero {
   background:
-    radial-gradient(ellipse at 70% 30%, rgba(196, 30, 58, 0.35), transparent 55%),
-    linear-gradient(135deg, #4a0000 0%, #8b0000 45%, #2a0000 100%);
+    radial-gradient(ellipse at 70% 30%, rgba(139, 0, 0, 0.45), transparent 55%),
+    linear-gradient(135deg, #5c0000 0%, #8B0000 40%, #3d0000 100%);
   color: #fff;
   padding: 56px 24px 64px;
 }
@@ -140,30 +140,18 @@
 
 /* ===== STATS ===== */
 .ph-stats {
-  background: linear-gradient(90deg, #8b0000 0%, #c41e3a 100%);
+  background: linear-gradient(90deg, #6b0000 0%, #8B0000 50%, #5c0000 100%);
   color: #fff;
-  padding: 36px 24px;
+  padding: 28px 24px;
 }
 
 .ph-stats-inner {
   max-width: 1180px;
   margin: 0 auto;
-  display: grid;
-  grid-template-columns: 0.9fr 1.1fr;
-  gap: 28px;
-  align-items: center;
 }
 
-.ph-stats-intro h2 {
-  margin: 0 0 8px;
-  font-size: clamp(20px, 2.5vw, 26px);
-  font-weight: 800;
-}
-
-.ph-stats-intro p {
-  margin: 0;
-  font-size: 14.5px;
-  color: rgba(255, 255, 255, 0.85);
+.ph-stats-inner--full .ph-stats-grid {
+  width: 100%;
 }
 
 .ph-stats-grid {
@@ -247,7 +235,7 @@
   width: 36px;
   height: 4px;
   border-radius: 4px;
-  background: linear-gradient(90deg, #8b0000, #c41e3a);
+  background: linear-gradient(90deg, #5c0000, #8B0000);
   margin-bottom: 14px;
 }
 
@@ -296,7 +284,7 @@
 .ph-highlight-media {
   aspect-ratio: 16 / 11;
   overflow: hidden;
-  background: linear-gradient(135deg, #8b0000, #4a0000);
+  background: linear-gradient(135deg, #8B0000, #3d0000);
 }
 
 .ph-highlight-img {
@@ -338,7 +326,7 @@
 
 /* ===== CTA ===== */
 .ph-cta {
-  background: linear-gradient(120deg, #8b0000 0%, #c41e3a 55%, #6b0000 100%);
+  background: linear-gradient(120deg, #5c0000 0%, #8B0000 45%, #3d0000 100%);
   color: #fff;
   padding: 48px 24px;
 }
@@ -502,7 +490,7 @@
 
 .ph-product-image {
   aspect-ratio: 1 / 1;
-  background: linear-gradient(135deg, #8b0000, #c41e3a);
+  background: linear-gradient(135deg, #5c0000, #8B0000);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -575,7 +563,6 @@
 /* ===== RESPONSIVE ===== */
 @media (max-width: 960px) {
   .ph-hero-inner,
-  .ph-stats-inner,
   .ph-cta-inner,
   .ph-about-inner {
     grid-template-columns: 1fr;
@@ -625,4 +612,3 @@
     grid-template-columns: 1fr 1fr;
   }
 }
-

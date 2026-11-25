@@ -116,11 +116,7 @@ const CatalogoView = () => {
 
       {/* STATS STRIP */}
       <section className="ph-stats">
-        <div className="ph-stats-inner">
-          <div className="ph-stats-intro">
-            <h2>Todo listo para tu escuela</h2>
-            <p>Herramientas claras para administrar el día a día del club.</p>
-          </div>
+        <div className="ph-stats-inner ph-stats-inner--full">
           <div className="ph-stats-grid">
             {STATS.map((item) => (
               <div key={item.value} className="ph-stat-item">
